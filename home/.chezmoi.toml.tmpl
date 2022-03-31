@@ -35,7 +35,7 @@
 {{- end -}}
 
 {{- if not $ephemeral -}}
-{{-   else if eq $hostname "thinker14s" -}}
+{{-   if eq $hostname "thinker14s" -}}
 {{-     $work = true -}}
 {{-     $personal = true -}}
 {{-     $docker = true -}}

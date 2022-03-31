@@ -1,0 +1,54 @@
+{{ if and (eq .chezmoi.os "darwin" "linux") (not .headless) -}}
+
+{{ $extensions := list
+     "eamodio.gitlens"
+     "dbaeumer.vscode-eslint"
+     "EditorConfig.EditorConfig"
+     "esbenp.prettier-vscode"
+     "GitHub.copilot"
+     "GitHub.github-vscode-theme"
+     "wix.vscode-import-cost"
+     "golang.go"
+     "hashicorp.terraform"
+     "johnsoncodehk.volar"
+     "lokalise.i18n-ally"
+     "ms-kubernetes-tools.vscode-kubernetes-tools"
+     "redhat.vscode-commons"
+     "redhat.vscode-yaml"
+     "streetsidesoftware.code-spell-checker"
+     "streetsidesoftware.code-spell-checker-german"
+     "usernamehw.errorlens"
+     "voorjaar.windicss-intellisense"
+     "vscode-icons-team.vscode-icons"
+     "gitpod.gitpod-desktop"
+      -}}
+
+{{/*
+Dart-Code.dart-code
+Dart-Code.flutter
+GitHub.vscode-pull-request-github
+gitpod.gitpod-desktop
+matthewpi.caddyfile-support
+ms-python.python
+ms-python.vscode-pylance
+ms-toolsai.jupyter
+ms-toolsai.jupyter-keymap
+ms-toolsai.jupyter-renderers
+ms-vscode-remote.remote-containers
+ms-vscode-remote.remote-ssh
+ms-vscode-remote.remote-ssh-edit
+ms-vscode.cpptools
+Orta.vscode-jest
+platformio.platformio-ide
+svelte.svelte-vscode
+*/}}
+
+#!/bin/bash
+
+set -eufo pipefail
+
+{{ range $extensions -}}
+code --force --install-extension {{ . }}
+{{ end -}}
+
+{{ end -}}

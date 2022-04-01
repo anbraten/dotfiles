@@ -1,0 +1,10 @@
+{{ if and (eq .chezmoi.os "linux") .node -}}
+#! /bin/sh
+
+set -eufo pipefail
+
+curl https://get.volta.sh | bash
+
+volta install node@14
+volta install pnpm
+{{ end -}}

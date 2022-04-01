@@ -1,5 +1,5 @@
-{{ if and (eq .chezmoi.arch "amd64") (eq .osid "linux-ubuntu") (not .headless) (not .ephemeral) -}}
-#!/bin/sh
+{{ if and (eq .chezmoi.arch "amd64") (eq .osid "linux-debian" "linux-ubuntu") (not .headless) (not .ephemeral) -}}
+#!/bin/bash
 
 set -eufo pipefail
 

@@ -1,5 +1,4 @@
-{{ if (and (eq .osid "linux-debian" "linux-ubuntu") .kubernetes) -}}
-
+{{ if and (eq .osid "linux-debian" "linux-ubuntu") .kubernetes -}}
 #!/bin/bash
 
 set -eufo pipefail

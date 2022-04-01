@@ -1,6 +1,7 @@
 {{ if and (eq .osid "linux-debian" "linux-ubuntu") (not .headless) (not .ephemeral) -}}
-
 #!/bin/sh
+
+set -eufo pipefail
 
 sudo apt-get install wget gpg apt-transport-https
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg

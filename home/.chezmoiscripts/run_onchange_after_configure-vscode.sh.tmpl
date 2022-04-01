@@ -1,4 +1,4 @@
-{{ if and (eq .chezmoi.os "darwin" "linux") (not .headless) -}}
+{{ if and (eq .chezmoi.os "darwin" "linux") (not .headless) (not .ephemeral) -}}
 
 {{ $extensions := list
      "eamodio.gitlens"
@@ -20,8 +20,17 @@
      "usernamehw.errorlens"
      "voorjaar.windicss-intellisense"
      "vscode-icons-team.vscode-icons"
-     "gitpod.gitpod-desktop"
-      -}}
+     "gitpod.gitpod-desktop" -}}
+
+#!/bin/bash
+
+set -eufo pipefail
+
+{{ range $extensions -}}
+code --force --install-extension {{ . }}
+{{ end -}}
+
+{{ end -}}
 
 {{/*
 Dart-Code.dart-code
@@ -42,13 +51,3 @@ Orta.vscode-jest
 platformio.platformio-ide
 svelte.svelte-vscode
 */}}
-
-#!/bin/bash
-
-set -eufo pipefail
-
-{{ range $extensions -}}
-code --force --install-extension {{ . }}
-{{ end -}}
-
-{{ end -}}

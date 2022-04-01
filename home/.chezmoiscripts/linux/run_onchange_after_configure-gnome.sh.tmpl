@@ -1,0 +1,54 @@
+{{ if (and (eq .chezmoi.os "linux-ubuntu") (not .ephemeral) (not .headless)) -}}
+#!/bin/bash
+
+set -eufo pipefail
+
+fc-cache
+
+gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
+profile=$(gsettings get org.gnome.Terminal.ProfilesList default)
+terminal_profile="org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles/${profile}/"
+gsettings set $terminal_profile font "MesloLGS NF"
+gsettings set $terminal_profile background-transparency-percent 9
+gsettings set $terminal_profile audible-bell false
+gsettings set $terminal_profile use-theme-colors false
+gsettings set $terminal_profile use-theme-transparency false
+gsettings set $terminal_profile use-transparent-background true
+gsettings set $terminal_profile palette "['#171421', '#c01c28', '#26a269', '#a2734c', '#12488b', '#a347ba', '#2aa1b3', '#d0cfcc', '#5e5c64', '#f66151', '#33da7a', '#e9ad0c', '#2a7bde', '#c061cb', '#33c7de', '#ffffff']"
+
+{{/*
+gsettings set $terminal_profile palette ['rgb(46,52,54)', 'rgb(204,0,0)', 'rgb(78,154,6)', 'rgb(196,160,0)', 'rgb(52,101,164)', 'rgb(117,80,123)', 'rgb(6,152,154)', 'rgb(211,215,207)', 'rgb(92,116,69)', 'rgb(239,41,41)', 'rgb(138,226,52)', 'rgb(252,233,79)', 'rgb(114,159,207)', 'rgb(173,127,168)', 'rgb(52,226,226)', 'rgb(238,238,236)']
+*/}}
+
+{{/*
+gsettings set org.gnome.shell favorite-apps "[ \
+	'google-chrome.desktop', \
+	'code_code.desktop', \
+	'org.gnome.Terminal.desktop', \
+	'org.gnome.Nautilus.desktop' \
+]"
+*/}}
+
+gsettings set org.gnome.shell.extensions.dash-to-dock autohide true
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
+gsettings set org.gnome.shell.extensions.dash-to-dock intellihide true
+
+gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-dark'
+
+gsettings set org.gnome.settings-daemon.plugins.power idle-dim false
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 3600
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 900
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
+
+gsettings set org.gnome.desktop.notifications show-in-lock-screen false
+
+gsettings set org.gnome.desktop.interface show-battery-percentage true
+gsettings set org.gnome.desktop.calendar show-weekdate true
+gsettings set org.gnome.desktop.interface clock-show-weekday true
+
+gsettings set org.gnome.desktop.peripherals.touchpad edge-scrolling-enabled true
+gsettings set org.gnome.desktop.peripherals.touchpad two-finger-scrolling-enabled false
+gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll false
+{{ end -}}

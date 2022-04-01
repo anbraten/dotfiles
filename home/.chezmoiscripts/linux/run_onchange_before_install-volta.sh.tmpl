@@ -5,6 +5,8 @@ set -eufo pipefail
 
 curl https://get.volta.sh | bash
 
+export PATH=$HOME/.volta/bin:$PATH
+
 volta install node@14
 volta install pnpm
 {{ end -}}

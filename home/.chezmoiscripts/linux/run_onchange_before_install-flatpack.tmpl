@@ -1,0 +1,8 @@
+{{ if and (eq .osid "linux-debian" "linux-ubuntu") .personal -}}
+#!/bin/bash
+
+set -eufo pipefail
+
+sudo apt install flatpak gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+{{ end -}}

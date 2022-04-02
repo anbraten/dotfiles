@@ -1,0 +1,7 @@
+{{ if and (eq .osid "linux-debian" "linux-ubuntu") .personal -}}
+#!/bin/bash
+
+set -eufo pipefail
+
+flatpak install flathub im.riot.Riot
+{{ end -}}

@@ -5,11 +5,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+export GOPATH="$HOME/go"
+export VOLTA_HOME="$HOME/.volta"
+
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$PATH
+# [ -d $HOME/bin ] && export PATH=$HOME/bin:$PATH
+# [ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
 [ -d $HOME/.cargo/bin ] && export PATH=$HOME/.cargo/bin:$PATH
-[ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
-[ -d $HOME/go/bin ] && export PATH=$HOME/go/bin:$PATH
+[ -d $GOPATH/bin ] && export PATH=$GOPATH/bin:$PATH
 [ -d $HOME/.platformio/penv/bin ] && export PATH=$HOME/.platformio/penv/bin:$PATH
 [ -d $HOME/.yarn/bin ] && export PATH=$HOME/.yarn/bin:$PATH
 [ -d ${KREW_ROOT:-$HOME/.krew}/bin ] && export PATH=${KREW_ROOT:-$HOME/.krew}/bin:$PATH
@@ -93,7 +96,6 @@ alias ll='ls -lah'
 alias open='xdg-open'
 
 # export EDITOR=code
-export GOPATH=$HOME
 export GO111MODULE=on
 {{- if eq .chezmoi.os "darwin" }}
 export HOMEBREW_NO_AUTO_UPDATE=1

@@ -1,0 +1,8 @@
+{{ if and (eq .osid "linux-debian" "linux-ubuntu") .golang -}}
+#!/bin/bash
+
+set -eufo pipefail
+
+curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/bin
+~/bin/oh-my-posh font install meslo
+{{ end -}}

@@ -1,0 +1,58 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version: 2
+
+palette:
+  black: "#282c34"
+  red: "#e06c75"
+  green: "#98c379"
+  yellow: "#e5c07b"
+  blue: "#61afef"
+  magenta: "#c678dd"
+  cyan: "#56b6c2"
+  white: "#dcdfe4"
+  foreground: "#dcdfe4"
+  background: "#282c34"
+blocks:
+- type: prompt
+  alignment: left
+  segments:
+  - type: session
+    style: plain
+    foreground: "#45F1C2"
+    template: '{{if ne .UserName "anton" }} {{ .UserName }} on{{ end }}'
+  # - type: root
+  #   style: plain
+  #   foreground: "#cd5e42"
+  #   template: "\ue3bf "
+  - type: path
+    style: plain
+    foreground: "#0CA0D8"
+    template: " \uf07b {{ .Path }}"
+    properties:
+      style: "agnoster"
+      gitdir_format: "%s"
+      # folder_icon: "\ue5fe"
+      folder_icon: "_"
+  - type: git
+    style: plain
+    powerline_symbol: ""
+    # powerline_symbol: 
+    foreground: "#14A5AE"
+    template: " {{ if or (.Working.Changed) (.Staging.Changed) (gt .StashCount 0) }}<p:magenta>{{ .HEAD }}</>{{ else }}<p:green>{{ .HEAD }}</>{{ end }}{{ if (gt .Ahead 0)}}<p:cyan> {{ .BranchStatus }}</>{{ end }}{{ if (gt .Behind 0)}}<p:cyan> {{ .BranchStatus }}</>{{ end }}{{ if .Staging.Changed }}<p:green> {{ .Staging.String }}</>{{ end }}{{ if .Working.Changed }}<p:red> {{ .Working.String }}</>{{ end }}"
+    properties:
+      fetch_status: true
+      fetch_stash_count: true
+      fetch_upstream_icon: true
+      cherry_pick_icon: "\u2713"
+      commit_icon: "\u25b7"
+      merge_icon: "\u25f4"
+      no_commits_icon: "[no commits]"
+      rebase_icon: "\u2c62"
+      tag_icon: "\u25b6"
+      branch_icon: ""
+  - type: status
+    style: plain
+    template: " {{ if eq .Code 0 }}<p:green>#</>{{ else }}<p:red>#</>{{ end }} "
+    properties:
+      always_enabled: true

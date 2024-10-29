@@ -1,0 +1,13 @@
+{{ if and (eq .osid "linux-debian" "linux-ubuntu") .golang -}}
+#!/bin/bash
+
+set -eufo pipefail
+
+mkdir -p ~/.programs/gopass || true
+cd ~/.programs/gopass
+wget -q https://github.com/gopasspw/gopass/releases/download/v1.15.14/gopass-1.15.14-linux-amd64.tar.gz
+tar -xvf gopass-1.15.14-linux-amd64.tar.gz
+rm gopass-1.15.14-linux-amd64.tar.gz
+ln -s ~/.programs/gopass/gopass ~/.local/bin/gopass
+{{ end -}}
+

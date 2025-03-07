@@ -1,4 +1,4 @@
-{{ if and (eq .osid "linux-debian" "linux-ubuntu") .golang -}}
+{{ if and (eq .osid "linux-debian" "linux-ubuntu") (not .ephemeral) -}}
 #!/bin/bash
 
 set -eufo pipefail

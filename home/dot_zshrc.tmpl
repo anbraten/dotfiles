@@ -4,11 +4,13 @@ export VOLTA_HOME="$HOME/.volta"
 # If you come from bash you might have to change your $PATH.
 [ -d $HOME/bin ] && export PATH=$HOME/bin:$PATH
 [ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
+[ -d $HOME/.local/go/bin ] && export PATH=$HOME/.local/go/bin:$PATH
 [ -d $HOME/.cargo/bin ] && export PATH=$HOME/.cargo/bin:$PATH
 [ -d $GOPATH/bin ] && export PATH=$GOPATH/bin:$PATH
-# [ -d $HOME/.platformio/penv/bin ] && export PATH=$HOME/.platformio/penv/bin:$PATH
+[ -d $HOME/.platformio/penv/bin ] && export PATH=$HOME/.platformio/penv/bin:$PATH
 [ -d ${KREW_ROOT:-$HOME/.krew}/bin ] && export PATH=${KREW_ROOT:-$HOME/.krew}/bin:$PATH
 [ -d $HOME/.volta/bin ] && export PATH=$HOME/.volta/bin:$PATH
+[ -d /home/linuxbrew/.linuxbrew/bin ] && export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 
 eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh.yml)"
 
@@ -111,7 +113,7 @@ export ANDROID_SDK_ROOT="/home/anton/.programs/android-sdk/"
 export CAPACITOR_ANDROID_STUDIO_PATH="/home/anton/.programs/android-studio/bin/studio.sh"
 
 # ruby
-eval "$(~/.rbenv/bin/rbenv init - zsh)"
+# eval "$(~/.rbenv/bin/rbenv init - zsh)"
 
 # fly.io
 export FLYCTL_INSTALL="/home/anton/.fly"
@@ -122,3 +124,14 @@ export PATH="/home/anton/.turso:$PATH"
 
 # gopass
 [[ -f ~/.programs/gopass/zsh.completion ]] && . ~/.programs/gopass/zsh.completion || true
+
+# n (node packagemanger)
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
+
+# needed for WSL to forward browser UI
+export LIBGL_ALWAYS_INDIRECT=1
+
+keep_current_path() {
+  printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
+}
+precmd_functions+=(keep_current_path)

@@ -5,7 +5,15 @@ set -eufo pipefail
 
 # https://launchpad.net/~longsleep/+archive/ubuntu/golang-backports
 
-sudo add-apt-repository -y ppa:longsleep/golang-backports
-sudo apt-get install -y golang
+#sudo add-apt-repository -y ppa:longsleep/golang-backports
+#sudo apt-get install -y golang
 
+GO_VERSION=1.24.2
+GO_ARCH=linux-amd64
+GO_FILE=go$GO_VERSION.$GO_ARCH.tar.gz
+
+wget -c https://go.dev/dl/$GO_FILE -O /tmp/$GO_FILE
+mkdir -p $HOME/.local
+tar -C $HOME/.local -xvzf /tmp/$GO_FILE
+rm /tmp/$GO_FILE
 {{ end -}}

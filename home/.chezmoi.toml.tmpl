@@ -49,6 +49,14 @@
 {{-     $kubernetes = true -}}
 {{-     $node = true -}}
 {{-     $golang = true -}}
+{{-   else if eq $hostname "CMP00173" -}}
+{{-     $work = true -}}
+{{-     $personal = false -}}
+{{-     $docker = true -}}
+{{-     $kubernetes = true -}}
+{{-     $node = false -}}
+{{-     $golang = true -}}
+{{-     $headless = true -}}
 {{-   else if stdinIsATTY -}}
 {{-     if hasKey . "headless" -}}
 {{-       $headless = .headless -}}
